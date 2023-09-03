@@ -9,9 +9,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@auth/core": "^0.13.0",
     "@t3-oss/env-nextjs": "^0.6.0",
     "next": "^13.4.13",
-    "next-auth": "^4.22.4",
+    "next-auth": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "zod": "^3.21.4"
