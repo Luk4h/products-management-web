@@ -1,7 +1,4 @@
 import { type Metadata } from "next";
-import { type Session } from "next-auth";
-import { SessionProvider } from "next-auth/react";
-import { type AppType } from "next/app";
 
 import "~/styles/globals.css";
 
@@ -10,15 +7,16 @@ export const metadata: Metadata = {
   description: 'Sistema de Gerenciamento de Inventário para o desafio de recrutamento da TecadiLabs.',
 }
 
-const MyApp: AppType<{ session: Session | null }> = ({
-  Component,
-  pageProps: { session, ...pageProps },
-}) => {
+export default function RootLayout({
+  // Layouts must accept a children prop.
+  // This will be populated with nested layouts or pages
+  children
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
-  );
-};
-
-export default MyApp;
+    <html lang="pt-br">
+      <body>{children}</body>
+    </html>
+  )
+}
