@@ -13,9 +13,8 @@ export const config = {
         username: { label: "Username", type: "text", placeholder: "Username" },
         password: { label: "Password", type: "password" },
       },
-      authorize(credentials, req) {
+      authorize(credentials) {
         console.log(credentials);
-        console.log(req);
         return {
           name: "Luiz Gustavo",
           id: "1",

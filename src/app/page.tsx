@@ -1,11 +1,16 @@
 import { type Metadata } from 'next'
+import { auth } from '~/auth'
  
 export const metadata: Metadata = {
   title: 'Gerenciamento de inventário | TecadiLabs',
 }
  
-export default function Page() {
+export default async function Page() {
+  const session = await auth()
   return (
-    <div>index.tsx</div>
+    <>
+      <pre>{JSON.stringify(session)}</pre>
+      <div>index.tsx</div>
+    </>
   )
 }
