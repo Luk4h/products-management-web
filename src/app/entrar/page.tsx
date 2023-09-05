@@ -10,8 +10,6 @@ export const metadata: Metadata = {
 export default async function Page() {
   const session = await auth();
     
-  //? Server component, Aguarda o retorno de auth()
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   if (session)
     redirect("/");
 
