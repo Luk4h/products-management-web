@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import splash from "~/public/splash-screen.jpeg"
+import splash from "@/public/splash-screen.jpeg"
 
 const Splash = () => (
   <div className='relative w-full flex-grow md:min-h-screen flex items-end'>

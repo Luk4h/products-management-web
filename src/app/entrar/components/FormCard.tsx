@@ -1,9 +1,9 @@
 'use client'
 
 import Link from "next/link";
-import Button from "~/components/Button"
-import TextInput from "~/components/Input/FormTextField"
-import PasswordInput from "~/components/Input/FormPasswordField"
+import Button from "@/components/Button"
+import TextInput from "@/components/Input/FormTextField"
+import PasswordInput from "@/components/Input/FormPasswordField"
 import SignInForm from "../forms/SignInForm";
 import Logo from "./Logo";
 import Splash from "./Splash";
