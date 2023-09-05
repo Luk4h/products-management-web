@@ -25,10 +25,10 @@
       "~/*": [
         "./src/*"
       ],
-      "~/components/*": [
+      "@/components/*": [
         "./src/app/components/*"
       ],
-      "~/public/*": [
+      "@/public/*": [
         "./public/*"
       ]
     },
