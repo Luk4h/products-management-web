@@ -8,7 +8,6 @@ type FormInputs = {
 
 const useLogin = () => {
   const methods = useForm<FormInputs>();
-
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     await signIn("credentials", {
       username: data.username,
