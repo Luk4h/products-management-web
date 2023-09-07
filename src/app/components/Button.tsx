@@ -4,10 +4,10 @@ import { useFormContext } from "react-hook-form";
 
 type ButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
-const Button = ({children, ...props}: ButtonProps) => {
+const Button = ({children, className, ...props}: ButtonProps) => {
   const { formState } = useFormContext();
   return (
-    <button className='w-full h-12 bg-blue-600 rounded-md px-2 text-white font-medium disabled:opacity-70 transition-all duration-500' disabled={formState.isSubmitting} {...props}>
+    <button className={`${className} w-full h-12 bg-blue-600 rounded-md px-2 text-white font-medium disabled:opacity-70 transition-all duration-500`} disabled={formState.isSubmitting} {...props}>
       {formState.isSubmitting ? (
       <div className="w-full flex justify-center items-center" role="status">
         <svg aria-hidden="true" className="w-8 h-8 mr-2 text-blue-500 animate-spin fill-white" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
