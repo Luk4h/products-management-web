@@ -2,7 +2,7 @@
 
 import StorageIcon from "@/components/icons/Storage";
 import WeightIcon from "@/components/icons/Weight";
-import { useEffect, useState, type MouseEvent } from "react";
+import { useEffect, useState } from "react";
 import { useOverlay } from "../providers/OverlayProvider";
 import ProductModal from "./ProductModal";
 
@@ -35,7 +35,7 @@ const ProductCard = ({
     setTimeout(()=>{
       setShowing(true)
     }, (idx+1)*50)
-  }, [])
+  }, [idx])
 
   const openProduct = () => createOverlay(<ProductModal product={{codigo, codigoCliente, descricao, um, pesoBruto, pesoLiquido, grupo, saldo}} />)
 
