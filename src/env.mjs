@@ -9,6 +9,7 @@ export const env = createEnv({
         ? z.string().min(1)
         : z.string().min(1).optional(),
     NEXTAUTH_URL: z.string().url(),
+    TECADI_ENDPOINT: z.string().url(),
   },
 
   client: {
@@ -18,6 +19,7 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    TECADI_ENDPOINT: process.env.TECADI_ENDPOINT,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
 });
