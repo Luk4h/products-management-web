@@ -53,7 +53,7 @@ const ProductCard = ({
         </span>
         <span id="Weight" className='flex items-center gap-1'>
           <WeightIcon />
-          <p id="Value">{`${pesoBruto} Kg`}</p>
+          <p id="Value">{`${pesoBruto.toLocaleString('pt-br')} Kg`}</p>
         </span>
       </div>
     </div>
