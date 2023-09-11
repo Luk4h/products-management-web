@@ -21,7 +21,7 @@ const Nav = () => {
   const handleProductCreateModal = () => createOverlay(<ProductModal />)
 
   return (
-    <nav id="Header" className={`relative bg-blue-600 w-screen flex text-white transition-all duration-200 md:justify-center md:items-center ${isInputFocused ? 'h-0 p-0 text-transparent md:px-8 md:py-4 md:h-auto md:text-white' : 'px-8 py-4'}`}>
+    <nav id="Header" className={`relative bg-blue-600 w-full flex text-white transition-all duration-200 md:justify-center md:items-center ${isInputFocused ? 'h-0 p-0 text-transparent md:px-8 md:py-4 md:h-auto md:text-white' : 'px-8 py-4'}`}>
       <div className="w-full flex justify-between items-center md:max-w-4xl justify-between md:justify-center overflow-hidden">
         <button id="OpenMenu" className="md:hidden" onClick={handleOpenMenu}>
           <MenuIcon />
