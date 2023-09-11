@@ -1,5 +1,6 @@
 import { useState } from "react"
 
+//? Hook para visualizar a senha. 
 const usePeek = () => {
   const [ isPeeking, setPeeking ] = useState<boolean>(false);
 
