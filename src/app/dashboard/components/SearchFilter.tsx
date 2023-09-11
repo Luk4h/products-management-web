@@ -5,10 +5,15 @@ import SearchIcon from "@/components/icons/Search";
 import { useFilter } from "../providers/FilterProvider";
 import { type ChangeEventHandler, useState, useEffect, useCallback, type MouseEventHandler } from "react";
 import PlusIcon from "~/app/components/icons/Plus";
+import { useOverlay } from "../providers/OverlayProvider";
+import ProductModal from "./ProductModal";
 
 const SearchFilter = () => {
   const {setSearch, isInputFocused, setInputFocus, toggleInStock, isFiltering} = useFilter();
   const [inputValue, setInputValue] = useState<string>('');
+  const {createOverlay} = useOverlay();
+
+  const handleProductCreateModal = () => createOverlay(<ProductModal />)
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -18,6 +23,8 @@ const SearchFilter = () => {
     return () => {
       clearTimeout(timerId);
     };
+  //! Evitando loop infinito pela chamada do setSearch
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue])
 
   const handleInputInteraction = () => {
@@ -32,7 +39,7 @@ const SearchFilter = () => {
 
   const handleFilterChange: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
     toggleInStock();
-  }, []);
+  }, [toggleInStock]);
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
     const { value } = e.target;
@@ -43,7 +50,7 @@ const SearchFilter = () => {
     <div id="ButtonsGroup" className="flex items-center justify-between gap-2 md:w-screen md:max-w-4xl">
       <button
         id="FilterButton"
-        onClick={handleFilterChange}
+        onClick={handleProductCreateModal}
         className={`hidden md:flex whitespace-nowrap items-center gap-2 p-1 transition-all duration-300 text-blue-500`}
       >
         <PlusIcon />
