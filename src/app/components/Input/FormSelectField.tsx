@@ -12,7 +12,7 @@ const Select = ({name, required, children, ...props}: InputProps) => {
   const { register } = useFormContext();
 
   return (
-    <select className="w-full h-12 border border-slate-200 rounded-md px-2" required={required} {...register(name, {required})} {...props}>
+    <select className="w-full h-12 border border-slate-200 hover:border-slate-300 rounded-md px-2 transition-all duration-300" required={required} {...register(name, {required})} {...props}>
       {children}
     </select>
   )

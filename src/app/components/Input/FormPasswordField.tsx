@@ -17,7 +17,7 @@ const Input = ({name, required, type, ...props}: InputProps) => {
   const { isPeeking, handlePeek } = usePeek();
 
   return (
-  <div className="w-full h-12 border border-slate-200 rounded-md relative flex items-center">
+  <div className="w-full h-12 border border-slate-200 rounded-md relative flex items-center transition-all duration-300 hover:border-slate-400">
     <input
       className="w-full h-full rounded-md px-2"
       required={required}

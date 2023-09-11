@@ -10,7 +10,7 @@ type InputProps = CustomInputProps & React.DetailedHTMLProps<React.InputHTMLAttr
 
 const Input = ({name, required, ...props}: InputProps) => {
   const { register } = useFormContext();
-  return <input className="w-full h-12 border border-slate-200 rounded-md px-2" required={required} {...register(name, {required})} {...props} />
+  return <input className="w-full h-12 border border-slate-200 rounded-md px-2 transition-all duration-300  hover:border-slate-400" required={required} {...register(name, {required})} {...props} />
 };
 
 export default Input;
