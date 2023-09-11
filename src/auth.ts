@@ -1,8 +1,34 @@
 import type { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from "next"
-import type { NextAuthOptions as NextAuthConfig } from "next-auth"
+import type { DefaultSession, NextAuthOptions as NextAuthConfig } from "next-auth"
 import { getServerSession } from "next-auth"
 import credentialsProvider from "next-auth/providers/credentials";
+import apiTecadi from "./app/api/tecadi";
 
+declare module "next-auth" {
+  interface Session extends DefaultSession {
+    user: {
+      accessToken: string;
+      name: string;
+      email: string;
+    };
+  }
+
+  interface User {
+    name: string;
+    email: string;
+    accessToken: string;
+  }
+}
+
+declare module "next-auth/jwt" {
+  /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
+  interface JWT {
+    /** OpenID ID Token */
+    name: string;
+    email: string;
+    accessToken: string;
+  }
+}
 
 export const config = {
   // https://next-auth.js.org/configuration/providers/oauth
@@ -13,15 +39,43 @@ export const config = {
         username: { label: "Username", type: "text", placeholder: "Username" },
         password: { label: "Password", type: "password" },
       },
-      authorize(credentials) {
-        console.log(credentials);
-        return {
-          name: "Luiz Gustavo",
-          id: "1",
-        };
+      async authorize(credentials) {
+        if (!credentials)
+          throw new Error("Usuário ou senha não informados");
+
+        const data = await apiTecadi.authenticate(credentials)
+          .then(data => {
+            console.log({data});
+            return data;
+          })
+          .catch((err: Error) => {
+            console.log(err.message);
+            throw new Error(encodeURI(err.message));
+          })
+
+        return data;
       },
     })
   ],
+  callbacks: {
+    jwt({ token, account, user }) {
+      if (account) {
+        token.accessToken = user.accessToken;
+      }
+      return token;
+    },
+    session: ({ session, token }) => {
+      session.user.accessToken = token.accessToken;
+      return session
+    },
+  },
+  session: {
+    maxAge: 1 * 60 * 60, // 7 days
+    updateAge: 0, // 24 hours
+  },
+  jwt: {
+    maxAge: 1 * 60 * 60, // 7 days
+  },
   pages: {
     signIn: '/entrar',
     error: '/entrar'
