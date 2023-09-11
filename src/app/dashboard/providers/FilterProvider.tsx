@@ -24,7 +24,9 @@ const FilterProvider = ({children}: {children: ReactNode}) => {
   const [isInputFocused, setInputFocus] = useState<boolean>(false);
   const [isFiltering, setFiltering] = useState<boolean>(false);
 
-  const setSearch = (e: string) => setFilter( prevState => ({ ...prevState, isSearching: true, searchString: e })) 
+  const setSearch = (e: string) => {
+    setFilter( prevState => ({ ...prevState, isSearching: true, searchString: e }));
+  } 
 
   const toggleInStock = () => {
     setFilter( prevState => ({ ...prevState, filter: !prevState.filter }));
