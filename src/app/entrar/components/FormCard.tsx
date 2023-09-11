@@ -7,8 +7,11 @@ import PasswordInput from "@/components/Input/FormPasswordField"
 import SignInForm from "../forms/SignInForm";
 import Logo from "./Logo";
 import Splash from "./Splash";
+import { useSearchParams } from "next/navigation";
 
 const FormCard = () => {
+  const searchParams = useSearchParams();
+  const errorMessage = searchParams.get("error");
 
   return (
     <div id="FormBackground" className='relative w-full flex-grow h-auto md:min-h-screen flex flex-col md:flex-row'>
@@ -33,6 +36,13 @@ const FormCard = () => {
           minLength={6} 
           aria-label="Digite sua senha"
         />
+        {
+          errorMessage ? (
+            <div id="LoginError" className="w-full h-auto bg-red-600 rounded-md p-2 text-white font-medium">
+              <span>{decodeURI(errorMessage)}</span>
+            </div>
+          ) : <></>
+        }
         <div className='flex flex-col gap-2'>
           <Button type="submit">Acessar</Button>
           <Link href='/' className='text-slate-500 disabled font-light'>Esqueci a senha</Link>
